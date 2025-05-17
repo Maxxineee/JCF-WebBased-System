@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JCF - Admin Transactions</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: linear-gradient(to bottom, #FFEEB2, #E1C44A, #EFC139);
+    }
+
+    header {
+      background-color: #fff7b0;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid black;
+    }
+
+    header img {
+      width: 60px;
+      margin-right: 15px;
+    }
+
+    header h1 {
+      font-family: 'Arial Black', Arial, sans-serif;
+      font-size: 24px;
+      margin: 0;
+      line-height: 1.2;
+      color: #000;
+    }
+
+    .main {
+      padding: 30px;
+      margin-left: 100px;
+    }
+
+    .message-box {
+      background-color: #fcf48c;
+      border: 1px solid #fcf483;
+      padding: 40px;
+      border-radius: 20px;
+      width: 85%;
+      max-width: 900px;
+      margin: 50px auto;
+      box-sizing: border-box;
+      font-size: 28px;
+      font-weight: bold;
+      text-align: center;
+      color: #000;
+    }
+
+    aside {
+      position: fixed;
+      top: 100px;
+      left: 0;
+      width: 90px;
+      background: #fff7b0;
+      height: calc(100% - 100px);
+      border-right: 1px solid #000;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .sidebar-links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    aside a img {
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+    }
+
+    .logout-btn {
+      margin-bottom: 20px;
+    }
+
+    .logout-btn button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .logout-btn img {
+      width: 35px;
+      height: 35px;
+    }
+  </style>
+  <script>
+    function confirmLogout() {
+      if (confirm("Are you sure you want to log out?")) {
+        window.location.href = "loginsection.html";
+      }
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <img src="assets/mainlogo.png" alt="JCF Logo" />
+    <h1>
+      <span>Fees and</span><br />
+      <span>Clearance System</span>
+    </h1>
+  </header>
+
+  <aside>
+    <div class="sidebar-links">
+      <a href="admin_home.html"><img src="assets/home.png" alt="Home" /></a>
+      <a href="admin_transactions.html"><img src="assets/transac.png" alt="Transactions" /></a>
+    </div>
+    <div class="logout-btn">
+      <button onclick="confirmLogout()" title="Logout">
+        <img src="assets/logout.png" alt="Logout" />
+      </button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="message-box">No transactions available for admin.</div>
+  </div>
+</body>
+</html>

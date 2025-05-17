@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pay CSG Fee</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom, #FFEEB2, #E1C44A, #EFC139);
+    }
+
+    header {
+      background-color: #fff7b0;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid black;
+    }
+
+    header img {
+      height: 45px;
+      margin-right: 15px;
+    }
+
+    header h1 {
+      font-family: 'Arial Black', Arial, sans-serif;
+      font-size: 22px;
+      margin: 0;
+      line-height: 1.2;
+      color: #000;
+    }
+
+     aside {
+      position: fixed;
+      top: 50;
+      left: 0;
+      width: 90px;
+      background: #fff7b0;
+      height: 100vh;
+      border-right: 1px solid #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 80px; /* leave space for the header */
+      z-index: 1;
+    }
+     
+    .sidebar-links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+
+    aside a img {
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+    }
+
+    .main {
+      margin-left: 100px;
+      padding: 50px 20px;
+    }
+
+    .box {
+      background-color: #fcf48c;
+      border: 1px solid #fcf483;
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 700px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .alert-box-content {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .alert-box-content img {
+      width: 80px;
+    }
+
+    .alert-text {
+      font-size: 20px;
+      font-weight: bold;
+      color: #000;
+      line-height: 1.4;
+    }
+
+    .alert-text span {
+      color: orange;
+    }
+
+    .fee-card {
+      background-color: #fdf9c5;
+      border: 1px solid #fdf9c5;
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      justify-content: center;
+      max-width: 500px;
+      margin: 0 auto 20px;
+    }
+
+    .fee-card img {
+      width: 60px;
+      height: 60px;
+    }
+
+    .fee-details {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .fee-details .amount,
+    .fee-details .gcash-btn {
+      background-color: #fff;
+      border: 1px solid #000;
+      padding: 10px 25px;
+      font-family: 'Arial Black', Arial, sans-serif;
+      font-size: 16px;
+      border-radius: 10px;
+      text-align: center;
+      color: #000;
+    }
+
+    .fee-details .amount {
+      pointer-events: none;
+    }
+
+    .gcash-btn:hover {
+      background-color: #fbe8b2;
+      cursor: pointer;
+    }
+
+    .back-btn {
+  position: left;
+  left: 40px;
+  bottom: 30px;
+  font-family: 'Arial Black', Arial, sans-serif;
+  background-color: #fff;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px 20px;
+  color: black;
+  font-size: 14px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.back-btn img {
+  width: 20px;
+  height: 20px;
+}
+
+
+    .back-btn:hover {
+      background-color: #fbe8b2;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="assets/mainlogo.png" alt="JCF Logo">
+    <h1>Fees and<br />Clearance System</h1>
+  </header>
+
+  <aside>
+    <div class="sidebar-links">
+      <a href="student_home.html"><img src="assets/home.png" alt="Home" /></a>
+      <a href="transactions.html"><img src="assets/transac.png" alt="Transactions" /></a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="box">
+      <div class="alert-box-content">
+        <img src="assets/excla.png" alt="Exclamation" />
+        <div class="alert-text">
+          Ka-Pinansyalista Juan Dela Cruz, you are now paying for <span>University Student Fee</span> (USG Fee) ₱120
+        </div>
+      </div>
+
+      <div class="fee-card">
+        <img src="assets/coin.png" alt="Coin" />
+        <div class="fee-details">
+          <div class="amount">₱120</div>
+          <button class="gcash-btn" onclick="location.href='gcash_login_usg.html'">Proceed to Pay with GCash</button>
+        </div>
+      </div>
+
+     <a class="back-btn" href="student_home.html">
+  <img src="assets/back.png" alt="BACK" />
+  Back
+</a>
+    </div>
+  </div>
+</body>
+</html>

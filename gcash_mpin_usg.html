@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GCash MPIN - Step 3</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ece8e4;
+    }
+
+    .header {
+      background-color: #0056e4;
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .header img {
+      width: 120px;
+    }
+
+    .gcash-box {
+      background-color: #ffffff;
+      width: 90%;
+      max-width: 400px;
+      margin: -60px auto 30px auto;
+      padding: 25px 25px 35px;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 2;
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+      text-align: left;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      text-align: left;
+      margin-bottom: 50px; /* Increased gap between subtitle and MPIN input */
+    }
+
+    .pin-input {
+      display: flex;
+      justify-content: center;
+      gap: 15px; /* Kept as original */
+      margin-bottom: 20px;
+    }
+
+    .pin-input input {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 3px solid #0e0d0d;
+      text-align: center;
+      font-size: 30px;
+      background: white;
+      transition: border-color 0.2s;
+    }
+
+    .pin-input input:focus {
+      outline: none;
+      border-color: #0056e4;
+    }
+
+    .btn {
+      margin-top: 20px;
+      padding: 12px;
+      width: 100%;
+      background: linear-gradient(to right, #4a9fff, #1a73e8);
+      border: none;
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+      border-radius: 25px;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .btn:hover {
+      background: linear-gradient(to right, #1a73e8, #0047b3);
+    }
+  </style>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const inputs = document.querySelectorAll(".pin-input input");
+
+      inputs.forEach((input, index) => {
+        input.addEventListener("input", () => {
+          if (input.value.length === 1 && index < inputs.length - 1) {
+            inputs[index + 1].focus();
+          }
+        });
+
+        input.addEventListener("keydown", (e) => {
+          if (e.key === "Backspace" && input.value === "" && index > 0) {
+            inputs[index - 1].focus();
+          }
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <div class="header">
+    <img src="assets/gcash.png" alt="GCash Logo">
+  </div>
+
+  <div class="gcash-box">
+    <p class="title">Login to pay with GCash</p>
+    <p class="subtitle">Enter your 4-digit MPIN.</p>
+
+    <form action="gcash_confirmation_usg.html">
+      <div class="pin-input">
+        <input type="password" maxlength="1" inputmode="numeric" pattern="[0-9]*" required>
+        <input type="password" maxlength="1" inputmode="numeric" pattern="[0-9]*" required>
+        <input type="password" maxlength="1" inputmode="numeric" pattern="[0-9]*" required>
+        <input type="password" maxlength="1" inputmode="numeric" pattern="[0-9]*" required>
+      </div>
+      <button type="submit" class="btn">NEXT</button>
+    </form>
+  </div>
+</body>
+</html>

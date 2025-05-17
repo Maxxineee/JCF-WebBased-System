@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Transactions</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #FFEEB2, #E1C44A, #EFC139);
+    }
+    .header-wrapper {
+      background-color: #fff0c0;
+      border-bottom: 2px solid #000;
+      position: fixed;
+      top: 0;
+      left: 60px;
+      right: 0;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      z-index: 1000;
+    }
+    .header-wrapper img {
+      height: 40px;
+      margin-right: 15px;
+    }
+    .header-wrapper h1 {
+      font-size: 20px;
+      font-weight: bold;
+      color: #000;
+      margin: 0;
+    }
+    aside {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 60px;
+      background-color: #fff0c0;
+      height: 100%;
+      border-right: 2px solid #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 80px;
+      gap: 20px;
+      z-index: 1001;
+    }
+    aside::before {
+      content: "";
+      position: absolute;
+      top: 70px;
+      left: 60px;
+      width: 2px;
+      height: 100%;
+      background: #000;
+    }
+    aside img {
+      width: 40px;
+      height: 40px;
+    }
+    .main {
+      margin-left: 80px;
+      padding: 120px 20px 30px 20px;
+    }
+    .transaction-box-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      background-color: #fff0c0;
+      padding: 20px;
+      border-radius: 8px;
+      border: 2px solid #000;
+      width: 100%;
+    }
+    .image-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex: 1;
+    }
+    .image-box img {
+      width: auto;
+      height: 180px;
+      object-fit: contain;
+    }
+    .home-back-box {
+      background-color: #FFFAEB;
+      padding: 15px 10px;
+      border-radius: 6px;
+      border: 2px solid #000;
+      width: 100%;
+      max-width: 150px;
+    }
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .button-group a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      background-color: #FFFAEB;
+      border: 1px solid #000;
+      border-radius: 6px;
+      text-decoration: none;
+      color: #000;
+      font-weight: bold;
+      text-align: left;
+      justify-content: flex-start;
+    }
+    .button-group a img {
+      width: 18px;
+      height: 18px;
+    }
+    .transaction-content {
+      flex: 2;
+      min-width: 250px;
+      display: flex;
+      flex-direction: column;
+    }
+    .transaction-box {
+      background-color: #fff0c0;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .transaction-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+    }
+    .transaction-label-box {
+      background-color: #FFFAEB;
+      padding: 8px 15px;
+      border: 2px solid #000;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 22px;
+      color: #000;
+    }
+    .sy-container {
+      background-color: #FFFAEB;
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 2px solid #000;
+      display: flex;
+      align-items: center;
+    }
+    .sy-container select {
+      padding: 6px 12px;
+      font-size: 14px;
+      border: 1px solid #000;
+      border-radius: 6px;
+    }
+    .table-container {
+      background-color: #FFFAEB;
+      padding: 15px;
+      border-radius: 6px;
+      border: 2px solid #000;
+      overflow-x: auto;
+      flex: 1;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #000;
+      text-align: center;
+      font-size: 14px;
+    }
+    th {
+      background-color: #F8ECC6;
+    }
+    td {
+      background-color: #fce5b7;
+    }
+    .paid {
+      color: green;
+      font-weight: bold;
+    }
+    .unpaid {
+      color: red;
+      font-weight: bold;
+    }
+    .footer {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 13px;
+    }
+    .footer img {
+      vertical-align: middle;
+      width: 18px;
+    }
+    @media (max-width: 768px) {
+      .header-wrapper {
+        left: 0;
+        height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+      }
+      aside {
+        flex-direction: row;
+        height: auto;
+        width: 100%;
+        padding: 10px;
+        border-right: none;
+        border-bottom: 2px solid #000;
+        position: static;
+      }
+      aside::before {
+        display: none;
+      }
+      .main {
+        margin-left: 0;
+        padding-top: 20px;
+      }
+      .transaction-box-wrapper {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header-wrapper">
+    <img src="assets/mainlogo.png" alt="Main Logo" />
+    <h1>Fees and Clearance System</h1>
+  </div>
+
+  <aside>
+    <a href="student_home.html"><img src="assets/home.png" alt="Home"></a>
+    <a href="student_transactions.html"><img src="assets/transac.png" alt="Transactions"></a>
+  </aside>
+
+  <div class="main">
+    <div class="transaction-box-wrapper">
+      <div class="image-box">
+        <img src="assets/transac.png" alt="Transaction Graphic">
+        <div class="home-back-box">
+          <div class="button-group">
+            <a href="student_home.html"><img src="assets/home.png" alt="Home Icon"> HOME</a>
+            <a href="student_login.html"><img src="assets/back.png" alt="Back Icon"> BACK</a>
+          </div>
+        </div>
+      </div>
+      <div class="transaction-content">
+        <div class="transaction-box">
+          <div class="transaction-header">
+            <div class="transaction-label-box">Transactions:</div>
+            <div class="sy-container">
+              <select>
+                <option>School Year 2024-2025, 1st sem</option>
+                <option>School Year 2023-2024, 2nd sem</option>
+                <option>School Year 2023-2024, 1st sem</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Student Fees</th>
+                  <th>Date Created</th>
+                  <th>Amount Due</th>
+                  <th>Date Due</th>
+                  <th>Reference #</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>(CSG) College Student Government Fee</td>
+                  <td>08-25-2024<br>11:00am</td>
+                  <td>PHP 150</td>
+                  <td>08-06-2024 (last day of enrollment)</td>
+                  <td>093148723274238</td>
+                  <td class="paid">PAID</td>
+                </tr>
+                <tr>
+                  <td>(USG) University Student Government Fee</td>
+                  <td>08-25-2024<br>11:00am</td>
+                  <td>PHP 120</td>
+                  <td>08-06-2024 (last day of enrollment)</td>
+                  <td>09392426784367</td>
+                  <td class="paid">PAID</td>
+                </tr>
+                <tr>
+                  <td>Maintenance/Utilities Fee</td>
+                  <td>08-25-2024<br>11:00am</td>
+                  <td>PHP 100</td>
+                  <td>08-06-2024 (last day of enrollment)</td>
+                  <td>N/A</td>
+                  <td class="unpaid">UNPAID</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+</html>

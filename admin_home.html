@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JCF - Fees and Clearance System (Admin Home)</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom, #FFEEB2, #E1C44A, #EFC139);
+    }
+
+    header {
+      background-color: #fff7b0;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid black;
+    }
+
+    header img {
+      width: 60px;
+      margin-right: 15px;
+    }
+
+    header h1 {
+      font-family: 'Arial Black', Arial, sans-serif;
+      font-size: 24px;
+      margin: 0;
+      line-height: 1.2;
+      color: #000;
+    }
+
+    .main {
+      padding: 30px;
+      margin-left: 100px;
+    }
+
+    .welcome {
+      font-weight: bold;
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+
+    .alert-box {
+      background-color: #fcf48c;
+      border: 1px solid #fcf483;
+      padding: 40px 30px;
+      border-radius: 20px;
+      width: 85%;
+      max-width: 1000px;
+      margin: 0 auto;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    .alert-box-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .alert-text {
+      font-size: 35px;
+      font-weight: bold;
+      color: #000;
+      line-height: 1.4;
+    }
+
+    .fee-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .fee-card {
+      width: 150px;
+      background-color: #fdf9c5;
+      border: 1px solid #fdf9c5;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      text-decoration: none;
+      color: #000;
+      font-weight: bold;
+      transition: background-color 0.2s;
+    }
+
+    .fee-card:hover {
+      background-color: #fbe8b2;
+    }
+
+    .fee-card img {
+      width: 70px;
+      height: 70px;
+      margin-bottom: 10px;
+    }
+
+    .footer-help {
+      text-align: center;
+      margin: 25px 0;
+      font-size: 12px;
+    }
+
+    .footer-help button {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fff;
+      border: 1px solid #000;
+      border-radius: 10px;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-family: 'Arial Black', Arial, sans-serif;
+      cursor: pointer;
+    }
+
+    .footer-help button img {
+      width: 16px;
+      height: 16px;
+    }
+
+    aside {
+      position: fixed;
+      top: 100px;
+      left: 0;
+      width: 90px;
+      background: #fff7b0;
+      height: calc(100% - 100px);
+      border-right: 1px solid #000;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .sidebar-links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    aside a img {
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+    }
+
+    .logout-btn {
+      margin-bottom: 20px;
+    }
+
+    .logout-btn button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .logout-btn img {
+      width: 35px;
+      height: 35px;
+    }
+
+    @media (max-width: 600px) {
+      .fee-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .main {
+        margin-left: 100px;
+      }
+    }
+  </style>
+  <script>
+    function confirmLogout() {
+      if (confirm("Are you sure you want to log out?")) {
+        window.location.href = "loginsection.html";
+      }
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <img src="assets/mainlogo.png" alt="JCF Logo" />
+    <h1>
+      <span>Fees and</span><br />
+      <span>Clearance System</span>
+    </h1>
+  </header>
+
+  <aside>
+    <div class="sidebar-links">
+      <a href="admin_home.html"><img src="assets/home.png" alt="Home" /></a>
+      <a href="admin_transaction.html"><img src="assets/transac.png" alt="Transactions" /></a>
+    </div>
+    <div class="logout-btn">
+      <button onclick="confirmLogout()" title="Logout">
+        <img src="assets/logout.png" alt="Logout" />
+      </button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="welcome">Welcome Back, Ma'am/Sir!</div>
+
+    <div class="alert-box">
+      <div class="alert-box-content">
+        <div class="alert-text">FEES</div>
+      </div>
+
+      <div class="fee-buttons">
+        <a href="admin_csg_year.html" class="fee-card">
+          <img src="assets/coin.png" alt="CSG" />
+          <div>CSG Fee</div>
+        </a>
+        <a href="admin_usg_year.html" class="fee-card">
+          <img src="assets/coin.png" alt="USG" />
+          <div>USG Fee</div>
+        </a>
+        <a href="admin_maintenance_year.html" class="fee-card">
+          <img src="assets/coin.png" alt="Maintenance" />
+          <div>Maintenance/<br />Utilities Fee</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-help">
+      <button>
+        <img src="assets/qm.png" alt="?" /> Need Help
+      </button>
+    </div>
+  </div>
+</body>
+</html>

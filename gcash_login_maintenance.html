@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pay Thru GCash</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ece8e4;
+    }
+
+    .header {
+      background-color: #0056e4;
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .header img {
+      width: 120px;
+    }
+
+    .gcash-box {
+      background-color: #ffffff;
+      width: 90%;
+      max-width: 400px;
+      margin: -60px auto 30px auto;
+      padding: 20px 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 2;
+    }
+
+    .row-line {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      margin-bottom: 20px;
+      gap: 10px;
+    }
+
+    .label {
+      color: #555;
+      font-weight: 500;
+      min-width: 80px;
+    }
+
+    .value {
+      font-weight: bold;
+      color: #000;
+    }
+
+    .amount {
+      color: #0074e4;
+    }
+
+    .login-section {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 20px;
+    }
+
+    .login-label {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .prefix {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+      padding: 8px 0;
+      font-size: 14px;
+      width: 100%;
+    }
+
+    .prefix span {
+      margin-right: 6px;
+      color: #333;
+    }
+
+    .prefix input {
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 14px;
+      width: 100%;
+    }
+
+    .btn {
+      margin-top: 25px;
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(to right, #4a9fff, #1a73e8);
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      text-decoration: underline;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: linear-gradient(to right, #1a73e8, #0047b3);
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="assets/gcash.png" alt="GCash Logo">
+  </div>
+
+  <div class="gcash-box">
+    <div class="row-line">
+      <div class="label">Merchant:</div>
+      <div class="value">JCF - LandBank</div>
+    </div>
+
+    <div class="row-line">
+      <div class="label">Amount Due:</div>
+      <div class="value amount">PHP 100</div>
+    </div>
+
+    <form action="gcash_otp_maintenance.html">
+      <div class="login-section">
+        <div class="login-label">Log in to pay with GCash</div>
+        <div class="prefix">
+          <span>+63</span>
+          <input type="text" name="mobile" maxlength="10" placeholder="Mobile number" required>
+        </div>
+      </div>
+      <button class="btn" type="submit">NEXT</button>
+    </form>
+  </div>
+</body>
+</html>

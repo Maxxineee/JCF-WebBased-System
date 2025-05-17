@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fees and Clearance Login</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to bottom, #FFEEB2, #E1C44A, #EFC139);
+      height: 100vh;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      background-color: #fff7b0;
+      padding: 20px;
+      border-bottom: 2px solid black;
+    }
+
+    .header img {
+      width: 100px;
+      margin-right: 15px;
+    }
+
+    .header-title {
+      font-family: 'Arial Black', Arial, sans-serif;
+      font-size: 24px;
+      line-height: 1.2;
+    }
+
+    .header-title span {
+      display: block;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #ffbb3c;
+      padding: 40px 20px;
+      min-height: calc(100vh - 100px);
+    }
+
+    .login-box {
+      background-color: #fcf483;
+      padding: 30px 25px;
+      border-radius: 10px;
+      border: 1px solid #fcf483;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .login-box h2 {
+      font-family: 'Arial Black', Arial, sans-serif;
+      font-size: 22px;
+      text-align: left;
+      margin-bottom: 5px;
+      color: #000;
+    }
+
+    .login-box p {
+      font-family: 'Arial', sans-serif;
+      font-size: 13px;
+      color: #333;
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    label {
+  font-family: 'Arial Black', Arial, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  display: block;
+  margin: 12px 0 5px;
+  color: #000;
+}
+
+
+    input[type="email"], input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #000;
+  font-size: 12px;
+  margin-bottom: 10px;
+  font-family: 'Arial Black', 'Segoe UI', Arial, sans-serif;
+  font-weight: bold;
+}
+
+
+    button {
+      width: 100%;
+      background-color: #fff2a8;
+      border: 1px solid #000;
+      border-radius: 6px;
+      padding: 10px;
+      font-family: 'Arial Black', Arial, sans-serif;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #fbe8b2;
+    }
+
+    .footer {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .help-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: #FFFAEB;
+      border: 1px solid #000;
+      border-radius: 20px;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-family: 'Arial Black', Arial, sans-serif;
+      cursor: pointer;
+    }
+
+    .help-button img {
+      width: 16px;
+      height: 16px;
+    }
+
+    @media (max-width: 500px) {
+      .header-title {
+        font-size: 20px;
+      }
+      .login-box {
+        padding: 20px;
+      }
+    }
+  </style>
+
+  <script>
+    function handleLogin(event) {
+      event.preventDefault();
+      const email = document.getElementById('email').value.toLowerCase();
+
+      if (email.includes('.stu@psu.palawan.edu.ph')) {
+        window.location.href = 'student_home.html';
+      } else if (email.includes('.adm@psu.palawan.edu.ph')) {
+        window.location.href = 'admin_home.html';
+      } else {
+        alert('Unrecognized user type. Please use a valid PSU email.');
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <!-- Header Section -->
+  <div class="header">
+    <img src="assets/mainlogo.png" alt="Logo" />
+    <div class="header-title">
+      <span>Fees and</span>
+      <span>Clearance System</span>
+    </div>
+  </div>
+
+  <!-- Login Section -->
+  <div class="container">
+    <div class="login-box">
+      <h2>Welcome Back, Ka-Pinansyalista!</h2>
+      <p>Please enter your details:</p>
+      <form onsubmit="handleLogin(event)">
+        <label for="email">Username or Corporate Email:</label>
+        <input type="email" id="email" placeholder="e.g. juandelacruz.stu@psu.palawan.edu.ph" required />
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter your password" required />
+
+        <button type="submit">Log in</button>
+      </form>
+    </div>
+
+    <!-- Help Button -->
+    <div class="footer">
+      <button class="help-button">
+        <img src="assets/qm.png" alt="?" /> Need Help?
+      </button>
+    </div>
+  </div>
+</body>
+</html>

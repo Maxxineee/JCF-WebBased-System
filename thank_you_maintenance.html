@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thank You - CSG Payment</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow: hidden; /* Prevent scrollbars on desktop */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom, #FFEEB2, #E1C44A, #EFC139);
+    }
+
+    header {
+      background-color: #fff7b0;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid black;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 2;
+      height: 80px;
+    }
+
+    header img {
+      height: 45px;
+      margin-right: 15px;
+    }
+
+    header h1 {
+      font-family: 'Arial Black', Arial, sans-serif;
+      font-size: 22px;
+      margin: 0;
+      line-height: 1.2;
+      color: #000;
+    }
+
+    aside {
+      position: fixed;
+      top: 110px;
+      left: 0;
+      width: 90px;
+      background: #fff7b0;
+      height: calc(100vh - 80px);
+      border-right: 1px solid #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 40px;
+      z-index: 1;
+    }
+
+    .sidebar-links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+
+    aside a img {
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+    }
+
+    .main {
+      margin-left: 90px;
+      margin-top: 80px;
+      height: calc(100vh - 80px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .box {
+      background-color: #fff8e1;
+      border: 1px solid #fff8e1;
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 850px;
+      width: 100%;
+      min-height: 300px;
+      text-align: left;
+      position: relative;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .box-content {
+      display: flex;
+      align-items: flex-start;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .box-content img {
+      width: 60px;
+      margin-top: 5px;
+    }
+
+    .thank-text {
+      font-size: 26px;
+      font-weight: bold;
+      color: #000;
+    }
+
+    .thank-text span {
+      color: orange;
+    }
+
+    .message {
+      margin-top: 15px;
+      font-size: 20px;
+      color: #000;
+      line-height: 1.7;
+    }
+
+    .home-btn {
+      margin-top: 30px;
+      background-color: #fff;
+      border: 1px solid #000;
+      padding: 12px 25px;
+      font-size: 16px;
+      font-family: 'Arial Black', Arial, sans-serif;
+      border-radius: 10px;
+      cursor: pointer;
+      color: #000;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .home-btn:hover {
+      background-color: #fbe8b2;
+    }
+
+    .home-btn img {
+      width: 20px;
+    }
+
+    .help-btn {
+      margin-top: 25px;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .help-btn button {
+      background-color: #fff;
+      border: 1px solid #000;
+      padding: 8px 15px;
+      font-size: 14px;
+      font-weight: bold;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .help-btn button:hover {
+      background-color: #fbe8b2;
+    }
+
+    .help-btn img {
+      width: 20px;
+    }
+
+    @media (max-width: 768px) {
+      html, body {
+        overflow-y: auto; /* Allow scroll on mobile if content overflows */
+      }
+
+      .box-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .main {
+        margin-left: 90px;
+        margin-top: 80px;
+        height: auto;
+      }
+
+      .box {
+        padding: 30px;
+      }
+
+      .thank-text {
+        font-size: 22px;
+      }
+
+      .message {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="assets/mainlogo.png" alt="JCF Logo">
+    <h1>Fees and<br>Clearance System</h1>
+  </header>
+
+  <aside>
+    <div class="sidebar-links">
+      <a href="student_home.html"><img src="assets/home.png" alt="Home" /></a>
+      <a href="transactions.html"><img src="assets/transac.png" alt="Transactions" /></a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="box">
+      <div class="box-content">
+        <img src="assets/excla.png" alt="Exclamation Icon" />
+        <div>
+          <div class="thank-text">THANK YOU! You’ve now Paid the <span>Maintenance/Utilities Fee</span>!</div>
+          <div class="message">
+            You will receive an email confirmation after we validated your payment.<br>
+            You can now go back to home page to check your balances and pay other fees.
+          </div>
+
+          <button class="home-btn" onclick="location.href='student_home.html'">
+            <img src="assets/home.png" alt="Home Icon" />
+            HOME
+          </button>
+
+          <div class="help-btn">
+            <button>
+              <img src="assets/qm.png" alt="Need Help?" />
+              Need Help?
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
