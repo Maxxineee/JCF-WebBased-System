@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin - Masterlist</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom, #FFEEB2, #E1C44A, #EFC139);
+    }
+
+    header {
+      background-color: #fff7b0;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid black;
+    }
+
+    header img {
+      width: 60px;
+      margin-right: 15px;
+    }
+
+    header h1 {
+      font-family: 'Arial Black', Arial, sans-serif;
+      font-size: 24px;
+      margin: 0;
+      line-height: 1.2;
+      color: #000;
+    }
+
+    aside {
+      position: fixed;
+      top: 100px;
+      left: 0;
+      width: 90px;
+      background: #fff7b0;
+      height: calc(100% - 100px);
+      border-right: 1px solid #000;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .sidebar-links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    aside a img {
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+    }
+
+    .logout-btn {
+      margin-bottom: 20px;
+    }
+
+    .logout-btn button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .logout-btn img {
+      width: 35px;
+      height: 35px;
+    }
+
+    .main {
+      padding: 30px;
+      margin-left: 100px;
+    }
+
+    h2 {
+      font-size: 28px;
+      font-weight: bold;
+      color: #000;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      background: white;
+    }
+
+    th, td {
+      border: 1px solid black;
+      padding: 10px;
+      text-align: center;
+    }
+
+    td[contenteditable="true"] {
+      background-color: #fff6ce;
+    }
+
+    .controls {
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 10px 15px;
+      margin-right: 10px;
+      border: none;
+      border-radius: 6px;
+      background: #fff;
+      border: 1px solid #000;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="assets/mainlogo.png" alt="JCF Logo" />
+    <h1>
+      <span>Fees and</span><br />
+      <span>Clearance System</span>
+    </h1>
+  </header>
+
+  <aside>
+    <div class="sidebar-links">
+      <a href="admin_home.html"><img src="assets/home.png" alt="Home" /></a>
+      <a href="admin_transaction.html"><img src="assets/transac.png" alt="Transactions" /></a>
+      <a href="admin_masterlist.html"><img src="assets/list.png" alt="Masterlist" /></a>
+      <a href="admin_settings.html"><img src="assets/settings.png" alt="Settings" /></a>
+    </div>
+    <div class="logout-btn">
+      <button onclick="confirmLogout()" title="Logout">
+        <img src="assets/logout.png" alt="Logout" />
+      </button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <h2>Student Masterlist</h2>
+    <div class="controls">
+      <button id="editBtn" onclick="enableEdit()">✎ Edit</button>
+      <button id="saveBtn" class="hidden" onclick="disableEdit()">✔ Save</button>
+      <button id="addRowBtn" class="hidden" onclick="addRow()">+ Add Row</button>
+      <button id="addColBtn" class="hidden" onclick="addColumn()">+ Add Column</button>
+      <button id="delRowBtn" class="hidden" onclick="deleteSelectedRow()">🗑 Delete Row</button>
+      <button id="delColBtn" class="hidden" onclick="deleteSelectedCol()">🗑 Delete Column</button>
+      <button onclick="exportToFakeSheet()">Export to Google Sheet</button>
+    </div>
+    <table id="masterTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Student Number</th>
+          <th>Year</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>JUAN DELA CRUZ</td>
+          <td>2020-0001</td>
+          <td>1st Year</td>
+          <td>Enrolled</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    let editMode = false;
+    let selectedCell = null;
+
+    window.onload = function () {
+      const savedData = JSON.parse(localStorage.getItem('masterlistData'));
+      const table = document.getElementById('masterTable');
+      if (savedData && savedData.length > 0) {
+        table.innerHTML = '';
+        savedData.forEach((rowData, i) => {
+          const row = table.insertRow();
+          rowData.forEach(cellText => {
+            const cell = row.insertCell();
+            cell.textContent = cellText;
+            if (i === 0) cell.outerHTML = `<th contenteditable="false">${cellText}</th>`;
+            else cell.setAttribute('contenteditable', false);
+          });
+        });
+      }
+    };
+
+    document.addEventListener('click', (e) => {
+      if (editMode && e.target.tagName === 'TD') {
+        selectedCell = e.target;
+      }
+    });
+
+    function enableEdit() {
+      editMode = true;
+      document.querySelectorAll('#masterTable td').forEach(cell => cell.contentEditable = true);
+      document.querySelectorAll('#masterTable th').forEach(cell => cell.contentEditable = true);
+      document.getElementById('addRowBtn').classList.remove('hidden');
+      document.getElementById('addColBtn').classList.remove('hidden');
+      document.getElementById('delRowBtn').classList.remove('hidden');
+      document.getElementById('delColBtn').classList.remove('hidden');
+      document.getElementById('saveBtn').classList.remove('hidden');
+      document.getElementById('editBtn').classList.add('hidden');
+    }
+
+    function disableEdit() {
+      editMode = false;
+      document.querySelectorAll('#masterTable td').forEach(cell => cell.contentEditable = false);
+      document.querySelectorAll('#masterTable th').forEach(cell => cell.contentEditable = false);
+      document.getElementById('addRowBtn').classList.add('hidden');
+      document.getElementById('addColBtn').classList.add('hidden');
+      document.getElementById('delRowBtn').classList.add('hidden');
+      document.getElementById('delColBtn').classList.add('hidden');
+      document.getElementById('saveBtn').classList.add('hidden');
+      document.getElementById('editBtn').classList.remove('hidden');
+
+      const table = document.getElementById('masterTable');
+      const data = [];
+      for (let i = 0; i < table.rows.length; i++) {
+        const row = [];
+        for (let j = 0; j < table.rows[i].cells.length; j++) {
+          row.push(table.rows[i].cells[j].innerText.trim());
+        }
+        data.push(row);
+      }
+      localStorage.setItem('masterlistData', JSON.stringify(data));
+    }
+
+    function addRow() {
+      const table = document.getElementById('masterTable').getElementsByTagName('tbody')[0];
+      const newRow = table.insertRow();
+      const cols = document.getElementById('masterTable').rows[0].cells.length;
+      for (let i = 0; i < cols; i++) {
+        const cell = newRow.insertCell();
+        cell.contentEditable = true;
+      }
+    }
+
+    function addColumn() {
+      const table = document.getElementById('masterTable');
+      const header = table.rows[0];
+      const newHead = header.insertCell();
+      newHead.contentEditable = true;
+      newHead.innerText = 'New Column';
+      for (let i = 1; i < table.rows.length; i++) {
+        const newCell = table.rows[i].insertCell();
+        newCell.contentEditable = true;
+      }
+    }
+
+    function deleteSelectedRow() {
+      if (selectedCell) {
+        const row = selectedCell.parentElement;
+        if (row.parentElement.tagName === 'TBODY') row.remove();
+      }
+    }
+
+    function deleteSelectedCol() {
+      if (selectedCell) {
+        const index = selectedCell.cellIndex;
+        const table = document.getElementById('masterTable');
+        for (let i = 0; i < table.rows.length; i++) {
+          table.rows[i].deleteCell(index);
+        }
+      }
+    }
+
+    function exportToFakeSheet() {
+      const table = document.getElementById('masterTable');
+      const data = [];
+      for (let i = 0; i < table.rows.length; i++) {
+        const row = [];
+        for (let j = 0; j < table.rows[i].cells.length; j++) {
+          row.push(table.rows[i].cells[j].innerText.trim());
+        }
+        data.push(row);
+      }
+      localStorage.setItem('masterlistData', JSON.stringify(data));
+      window.location.href = 'admin_googlesheet.html';
+    }
+
+    function confirmLogout() {
+      if (confirm("Are you sure you want to log out?")) {
+        window.location.href = "loginsection.html";
+      }
+    }
+  </script>
+</body>
+</html>
