@@ -58,8 +58,9 @@
 
     .alert-box-content {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
+      position: relative;
       margin-bottom: 20px;
     }
 
@@ -67,17 +68,24 @@
       font-size: 35px;
       font-weight: bold;
       color: #000;
-      line-height: 1.4;
+    }
+
+    #edit-fees {
+      font-size: 18px;
+      color: rgb(255, 123, 0);
+      cursor: pointer;
+      text-decoration: underline;
     }
 
     .fee-buttons {
       display: flex;
       justify-content: center;
       gap: 30px;
-      margin-top: 20px;
+      flex-wrap: wrap;
     }
 
     .fee-card {
+      position: relative;
       width: 150px;
       background-color: #fdf9c5;
       border: 1px solid #fdf9c5;
@@ -98,6 +106,22 @@
       width: 70px;
       height: 70px;
       margin-bottom: 10px;
+    }
+
+    .delete-fee {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      cursor: pointer;
+      background: red;
+      color: white;
+      border-radius: 50%;
+      padding: 2px 6px;
+      font-size: 12px;
+    }
+
+    .delete-fee.hidden {
+      display: none;
     }
 
     .footer-help {
@@ -168,24 +192,53 @@
       height: 35px;
     }
 
-    @media (max-width: 600px) {
-      .fee-buttons {
-        flex-direction: column;
-        align-items: center;
-      }
+    #overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
 
-      .main {
-        margin-left: 100px;
-      }
+    #overlay-content {
+      background: #fff7b0;
+      padding: 30px 40px;
+      border-radius: 15px;
+      width: 300px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    }
+
+    #overlay input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #aaa;
+    }
+
+    #overlay button {
+      padding: 8px 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    #overlay .add-btn {
+      background-color: #e1c44a;
+    }
+
+    #overlay .cancel-btn {
+      background-color: #ddd;
+      margin-left: 10px;
     }
   </style>
-  <script>
-    function confirmLogout() {
-      if (confirm("Are you sure you want to log out?")) {
-        window.location.href = "index.html";
-      }
-    }
-  </script>
 </head>
 <body>
   <header>
@@ -200,6 +253,7 @@
     <div class="sidebar-links">
       <a href="admin_home.html"><img src="assets/home.png" alt="Home" /></a>
       <a href="admin_transaction.html"><img src="assets/transac.png" alt="Transactions" /></a>
+      <a href="admin_settings.html"><img src="assets/settings.png" alt="Settings" /></a>
     </div>
     <div class="logout-btn">
       <button onclick="confirmLogout()" title="Logout">
@@ -214,20 +268,28 @@
     <div class="alert-box">
       <div class="alert-box-content">
         <div class="alert-text">FEES</div>
+        <span id="edit-fees">✎ Edit Fees</span>
       </div>
 
       <div class="fee-buttons">
         <a href="admin_csg_year.html" class="fee-card">
           <img src="assets/coin.png" alt="CSG" />
           <div>CSG Fee</div>
+          <span class="delete-fee hidden" onclick="deleteFee(this)">X</span>
         </a>
         <a href="admin_usg_year.html" class="fee-card">
           <img src="assets/coin.png" alt="USG" />
           <div>USG Fee</div>
+          <span class="delete-fee hidden" onclick="deleteFee(this)">X</span>
         </a>
         <a href="admin_maintenance_year.html" class="fee-card">
           <img src="assets/coin.png" alt="Maintenance" />
           <div>Maintenance/<br />Utilities Fee</div>
+          <span class="delete-fee hidden" onclick="deleteFee(this)">X</span>
+        </a>
+        <a href="#" class="fee-card" id="add-fee">
+          <img src="assets/add.png" alt="Add New Fee" />
+          <div>Add New Fee</div>
         </a>
       </div>
     </div>
@@ -238,5 +300,74 @@
       </button>
     </div>
   </div>
+
+  <div id="overlay">
+    <div id="overlay-content">
+      <h2>Add New Fee</h2>
+      <input type="text" id="fee-name" placeholder="Type of Fee">
+      <input type="number" id="fee-amount" placeholder="Amount">
+      <div>
+        <button class="add-btn" onclick="submitFee()">Add Fee</button>
+        <button class="cancel-btn" onclick="closeOverlay()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function confirmLogout() {
+      if (confirm("Are you sure you want to log out?")) {
+        window.location.href = "loginsection.html";
+      }
+    }
+
+    function deleteFee(element) {
+      element.parentNode.remove();
+    }
+
+    function closeOverlay() {
+      document.getElementById("overlay").style.display = "none";
+      document.getElementById("fee-name").value = "";
+      document.getElementById("fee-amount").value = "";
+    }
+
+    function submitFee() {
+      const feeType = document.getElementById("fee-name").value.trim();
+      const feeAmount = document.getElementById("fee-amount").value.trim();
+
+      if (feeType && feeAmount) {
+        const newFeeCard = document.createElement('a');
+        newFeeCard.setAttribute('href', '#');
+        newFeeCard.classList.add('fee-card');
+
+        const deleteIcon = document.createElement('span');
+        deleteIcon.classList.add('delete-fee', 'hidden');
+        deleteIcon.textContent = 'X';
+        deleteIcon.onclick = function () { deleteFee(this); };
+
+        newFeeCard.innerHTML = `
+          <img src="assets/coin.png" alt="${feeType}" />
+          <div>${feeType} Fee</div>
+        `;
+        newFeeCard.appendChild(deleteIcon);
+
+        document.querySelector('.fee-buttons').insertBefore(newFeeCard, document.getElementById('add-fee'));
+        closeOverlay();
+      } else {
+        alert("Please enter both fee name and amount.");
+      }
+    }
+
+    document.getElementById('add-fee').addEventListener('click', function () {
+      document.getElementById("overlay").style.display = "flex";
+    });
+
+    let editMode = false;
+    document.getElementById('edit-fees').addEventListener('click', function () {
+      editMode = !editMode;
+      document.querySelectorAll('.delete-fee').forEach(btn => {
+        btn.classList.toggle('hidden', !editMode);
+      });
+    });
+  </script>
 </body>
 </html>
