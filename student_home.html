@@ -208,7 +208,7 @@
   <script>
     function confirmLogout() {
       if (confirm("Are you sure you want to log out?")) {
-        window.location.href = "index.html"; // updated redirect location
+        window.location.href = "loginsection.html";
       }
     }
   </script>
@@ -226,6 +226,7 @@
     <div class="sidebar-links">
       <a href="student_home.html"><img src="assets/home.png" alt="Home" /></a>
       <a href="transactions.html"><img src="assets/transac.png" alt="Transactions" /></a>
+      <a href="student_settings.html"><img src="assets/settings.png" alt="Settings" /></a> <!-- New Settings icon -->
     </div>
     <div class="logout-btn">
       <button onclick="confirmLogout()" title="Logout">
@@ -262,10 +263,12 @@
     </div>
 
     <div class="footer-help">
-      <button>
-        <img src="assets/qm.png" alt="?" /> Need Help
-      </button>
-    </div>
+  <a href="student_help.html">
+    <button>
+      <img src="assets/qm.png" alt="?" /> Need Help
+    </button>
+  </a>
+</div>
   </div>
 </body>
 </html>
