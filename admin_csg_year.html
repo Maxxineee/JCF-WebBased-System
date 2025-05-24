@@ -5,19 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Admin - CSG by Year</title>
   <style>
-    body {
+    html, body {
       margin: 0;
-      min-height: 100vh;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(to bottom, #FFEEB2, #E1C44A, #EFC139);
+      height: auto;
+      overflow-y: auto;
     }
 
     header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
       background-color: #fff7b0;
       padding: 20px;
       display: flex;
       align-items: center;
       border-bottom: 2px solid black;
+      z-index: 999;
     }
 
     header img {
@@ -39,12 +45,19 @@
       left: 0;
       width: 90px;
       background: #fff7b0;
-      height: 100%;
+      height: calc(100% - 100px);
       border-right: 1px solid #000;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       align-items: center;
       padding-top: 30px;
+    }
+
+    .sidebar-links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       gap: 30px;
     }
 
@@ -54,9 +67,27 @@
       cursor: pointer;
     }
 
+    .logout-btn {
+      margin-bottom: 20px;
+    }
+
+    .logout-btn button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .logout-btn img {
+      width: 35px;
+      height: 35px;
+    }
+
     .main {
       padding: 40px;
       margin-left: 110px;
+      margin-top: 100px;
+      box-sizing: border-box;
     }
 
     .box {
@@ -98,7 +129,7 @@
       gap: 10px;
       font-weight: bold;
       font-size: 20px;
-      margin-bottom: 50px; /* ✅ Added gap below this */
+      margin-bottom: 50px;
     }
 
     .fee-header img {
@@ -110,30 +141,29 @@
       display: flex;
       justify-content: center;
       gap: 25px;
-      flex-wrap: wrap;             /* ✅ Allows buttons to wrap on small screens */
+      flex-wrap: wrap;
       overflow-x: auto;
       padding-bottom: 10px;
     }
 
-   .year-btn {
-  background-color: #fff;
-  padding: 20px 30px;
-  border-radius: 15px;
-  font-size: 20px;
-  font-weight: bold;
-  color: black;
-  text-decoration: none;
-  border: none;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-  transition: transform 0.2s ease;
-  width: 100px;
-  height: 80px;
-  display: flex;              /* ✅ */
-  align-items: center;        /* ✅ */
-  justify-content: center;    /* ✅ */
-  text-align: center;         /* ✅ */
-}
-
+    .year-btn {
+      background-color: #fff;
+      padding: 20px 30px;
+      border-radius: 15px;
+      font-size: 20px;
+      font-weight: bold;
+      color: black;
+      text-decoration: none;
+      border: none;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+      transition: transform 0.2s ease;
+      width: 100px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
 
     .year-btn:hover {
       transform: scale(1.05);
@@ -193,10 +223,17 @@
   </header>
 
   <aside>
-  <a href="admin_home.html"><img src="assets/home.png" alt="Home"></a>
-  <a href="admin_masterlist.html"><img src="assets/list.png" alt="Masterlist"></a>
-</aside>
-
+    <div class="sidebar-links">
+      <a href="admin_home.html"><img src="assets/home.png" alt="Home"></a>
+      <a href="admin_masterlist.html"><img src="assets/list.png" alt="Masterlist"></a>
+      <a href="admin_settings.html"><img src="assets/settings.png" alt="Settings"></a>
+    </div>
+    <div class="logout-btn">
+      <button onclick="confirmLogout()" title="Logout">
+        <img src="assets/logout.png" alt="Logout" />
+      </button>
+    </div>
+  </aside>
 
   <div class="main">
     <div class="box">
@@ -217,14 +254,21 @@
       </div>
 
       <div class="footer-help">
-  <a href="admin_help.html">
-    <button>
-      <img src="assets/qm.png" alt="?" /> Need Help
-    </button>
-  </a>
-</div>
-
+        <a href="admin_help.html">
+          <button>
+            <img src="assets/qm.png" alt="?" /> Need Help
+          </button>
+        </a>
+      </div>
     </div>
   </div>
+
+  <script>
+    function confirmLogout() {
+      if (confirm("Are you sure you want to log out?")) {
+        window.location.href = "loginsection.html";
+      }
+    }
+  </script>
 </body>
 </html>
