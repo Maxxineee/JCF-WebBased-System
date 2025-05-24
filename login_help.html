@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Need Help - Fees and Clearance</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to bottom, #FFEEB2, #E1C44A, #EFC139);
+      height: 100vh;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      background-color: #fff7b0;
+      padding: 20px;
+      border-bottom: 2px solid black;
+    }
+
+    .header img {
+      width: 100px;
+      margin-right: 15px;
+    }
+
+    .header-title {
+      font-family: 'Arial Black', Arial, sans-serif;
+      font-size: 24px;
+      line-height: 1.2;
+    }
+
+    .header-title span {
+      display: block;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #ffbb3c;
+      padding: 40px 20px;
+      min-height: calc(100vh - 100px);
+    }
+
+    .help-box {
+      background-color: #fcf483;
+      padding: 30px 25px;
+      border-radius: 10px;
+      border: 1px solid #fcf483;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .help-box h2 {
+      font-family: 'Arial Black', Arial, sans-serif;
+      font-size: 22px;
+      color: #000;
+      margin-bottom: 15px;
+    }
+
+    .help-box p {
+      font-size: 14px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .back-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #fff2a8;
+      border: 1px solid #000;
+      border-radius: 6px;
+      font-family: 'Arial Black', Arial, sans-serif;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .back-button:hover {
+      background-color: #fbe8b2;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="assets/mainlogo.png" alt="Logo" />
+    <div class="header-title">
+      <span>Fees and</span>
+      <span>Clearance System</span>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="help-box">
+      <h2>Need Help Logging In?</h2>
+      <p>• Make sure you are using your correct PSU email address.</p>
+      <p>• If you're a student, use: <strong>yourname.stu@psu.palawan.edu.ph</strong></p>
+      <p>• If you're an admin, use: <strong>yourname.adm@psu.palawan.edu.ph</strong></p>
+      <p>• For password issues, contact the ICT support team at <strong>ictsupport@psu.edu.ph</strong></p>
+      <p>• You may also call local IT at <strong>(048) 433-1234</strong></p>
+
+      <button class="back-button" onclick="window.location.href='index.html'">Back to Login</button>
+    </div>
+  </div>
+</body>
+</html>
