@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JCF - Need Help</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    html, body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom, #FFEEB2, #E1C44A, #EFC139);
+      height: auto;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #fff7b0;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid black;
+      z-index: 999;
+    }
+
+    header img {
+      width: 60px;
+      margin-right: 15px;
+    }
+
+    header h1 {
+      font-family: 'Arial Black', Arial, sans-serif;
+      font-size: 24px;
+      margin: 0;
+      line-height: 1.2;
+      color: #000;
+    }
+
+    aside {
+      position: fixed;
+      top: 100px;
+      left: 0;
+      width: 90px;
+      background: #fff7b0;
+      height: calc(100% - 100px);
+      border-right: 1px solid #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 30px;
+      justify-content: space-between;
+    }
+
+    .sidebar-links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+
+    aside a img {
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+    }
+
+    .logout-btn {
+      margin-bottom: 30px;
+    }
+
+    .logout-btn button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .logout-btn img {
+      width: 35px;
+      height: 35px;
+    }
+
+    .main {
+      margin-left: 100px;
+      margin-top: 100px;
+      padding: 40px;
+      box-sizing: border-box;
+    }
+
+    .welcome {
+      font-weight: bold;
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .help-box {
+      background-color: #fcf48c;
+      border: 1px solid #fcf483;
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 800px;
+    }
+
+    .help-title {
+      font-size: 26px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .help-content {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .help-section {
+      margin-bottom: 25px;
+    }
+
+    .help-section h3 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .help-section p {
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .main {
+        margin-left: 90px;
+        margin-top: 100px;
+        padding: 20px;
+      }
+
+      .help-box {
+        padding: 20px;
+      }
+
+      .help-title {
+        font-size: 22px;
+      }
+
+      .help-section h3 {
+        font-size: 18px;
+      }
+    }
+  </style>
+  <script>
+    function confirmLogout() {
+      if (confirm("Are you sure you want to log out?")) {
+        window.location.href = "loginsection.html";
+      }
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <img src="assets/mainlogo.png" alt="JCF Logo" />
+    <h1>
+      <span>Fees and</span><br />
+      <span>Clearance System</span>
+    </h1>
+  </header>
+
+  <aside>
+    <div class="sidebar-links">
+      <a href="student_home.html"><img src="assets/home.png" alt="Home" /></a>
+      <a href="transactions.html"><img src="assets/transac.png" alt="Transactions" /></a>
+      <a href="student_settings.html"><img src="assets/settings.png" alt="Settings" /></a>
+      <a href="student_help.html"><img src="assets/qm.png" alt="Help" /></a>
+    </div>
+    <div class="logout-btn">
+      <button onclick="confirmLogout()" title="Logout">
+        <img src="assets/logout.png" alt="Logout" />
+      </button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="welcome">Need Help?</div>
+
+    <div class="help-box">
+      <div class="help-title">Student Support Center</div>
+      <div class="help-content">
+        
+        <div class="help-section">
+          <h3>📌 Report Issues</h3>
+          <p>If you encounter problems with fees, payments, or the system, please email us with screenshots or descriptions of the issue.</p>
+        </div>
+
+        <div class="help-section">
+          <h3>📞 Contact Support</h3>
+          <p>Email: <a href="mailto:support@jcf.edu">support@jcf.edu</a></p>
+          <p>Phone: 0917-123-4567</p>
+        </div>
+
+        <div class="help-section">
+          <h3>💡 Quick Tips</h3>
+          <p>• Make sure your internet connection is stable during payments.<br>
+             • Use the GCash instructions step-by-step for CSG, USG, and Maintenance fees.<br>
+             • Visit the Transactions tab to verify your payment history.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>
